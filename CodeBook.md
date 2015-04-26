@@ -53,18 +53,25 @@ All of the features are normalized and bounded within [-1,1] and each feature ve
 #Work performed on the dataset
 
 The assignment consisted of the following:
-You should create one R script called run_analysis.R that does the following.:
+You should create one R script called *run_analysis.R* that does the following.:
  1. Merges the training and the test sets to create one data set.
+    * Here the files **subject_train.txt**, **X_train.txt**, **y_train.txt**, **subject_test.txt**, **X_test.txt**, **y_test.txt** were loaded and the data from thos files binded (using *rbind* and *cbind*) into one dataset.
  2. Extracts only the measurements on the mean and standard deviation for each measurement. 
+    * In this step we serach for the features that have the word *mean* or *std* in their name (using **features.txt**) and only used these features in the rest of the script.
  3. Uses descriptive activity names to name the activities in the data set
- 4. Appropriately labels the data set with descriptive variable names. 
+    * Using **activity_labels.txt** we add an additional column to our data frame that, based on the activity ID, assignes each row an activity label.
+ 4. Appropriately labels the data set with descriptive variable names.
+    * Again, using **features.txt**, we assign names to columns of our data frame that contains our selected features.
  5. From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject.
+    * To make the data tidy we remove all special characters from the feature names and set them to all be lower case. after that we use *aggregate* to calculate mean for every feature for each activity and each subject.
+
+The complete code described in the previous steps can be found in the script *run_analysis.R*
 
 Result of the second step gives us a reduced dataset containing only variables that represent the calculated mean or standard deviation of original measurements.
 The result of the assignment is a data table containing calculated mean of the 82 selected variables grouped by each activity and each subject:
 (note: the prefix 't' indicates time domain and the prefix 'f' indicates frequency domain)
 * **subject**: the subject who performed the activity for each window sample. Numeric variable in range from 1 to 30.
-* **tbodyaccmeanx**, **tbodyaccmeany**, **tbodyaccmeanz**, **fbodyaccmeanx**, **fbodyaccmeany**, **fbodyaccmeanz*: calculated mean value for the body acceleration signals for 3-axial signals in the X, Y and Z directions. Expressed in standard gravity units 'g'.
+* **tbodyaccmeanx**, **tbodyaccmeany**, **tbodyaccmeanz**, **fbodyaccmeanx**, **fbodyaccmeany**, **fbodyaccmeanz**: calculated mean value for the body acceleration signals for 3-axial signals in the X, Y and Z directions. Expressed in standard gravity units 'g'.
 * **tbodyaccstdx**, **tbodyaccstdy**, **tbodyaccstdz**, **fbodyaccstdx**, **fbodyaccstdy**, **fbodyaccstdz**: calculated std value for the body acceleration signals for 3-axial signals in the X, Y and Z directions. Expressed in standard gravity units 'g'.
 * **tgravityaccmeanx**, **tgravityaccmeany**, **tgravityaccmeanz**: calculated mean value for the gravity acceleration signals for 3-axial signals in the X, Y and Z directions. Expressed in standard gravity units 'g'.
 * **tgravityaccstdx**, **tgravityaccstdy**, **tgravityaccstdz**: calculated std value for the gravity acceleration signals for 3-axial signals in the X, Y and Z directions. Expressed in standard gravity units 'g'.
