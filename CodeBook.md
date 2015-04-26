@@ -54,44 +54,44 @@ All of the features are normalized and bounded within [-1,1] and each feature ve
 
 The assignment consisted of the following:
 You should create one R script called run_analysis.R that does the following.:
-1. Merges the training and the test sets to create one data set.
-2. Extracts only the measurements on the mean and standard deviation for each measurement. 
-3. Uses descriptive activity names to name the activities in the data set
-4. Appropriately labels the data set with descriptive variable names. 
-5. From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject.
+ 1. Merges the training and the test sets to create one data set.
+ 2. Extracts only the measurements on the mean and standard deviation for each measurement. 
+ 3. Uses descriptive activity names to name the activities in the data set
+ 4. Appropriately labels the data set with descriptive variable names. 
+ 5. From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject.
 
 Result of the second step gives us a reduced dataset containing only variables that represent the calculated mean or standard deviation of original measurements.
 The result of the assignment is a data table containing calculated mean of the 82 selected variables grouped by each activity and each subject:
 (note: the prefix 't' indicates time domain and the prefix 'f' indicates frequency domain)
-* "subject": the subject who performed the activity for each window sample. Numeric variable in range from 1 to 30.
-* "tbodyaccmeanx", "tbodyaccmeany", "tbodyaccmeanz", "fbodyaccmeanx", "fbodyaccmeany", "fbodyaccmeanz": calculated mean value for the body acceleration signals for 3-axial signals in the X, Y and Z directions. Expressed in standard gravity units 'g'.
-* "tbodyaccstdx", "tbodyaccstdy", "tbodyaccstdz", "fbodyaccstdx", "fbodyaccstdy", "fbodyaccstdz": calculated std value for the body acceleration signals for 3-axial signals in the X, Y and Z directions. Expressed in standard gravity units 'g'.
-* "tgravityaccmeanx", "tgravityaccmeany" "tgravityaccmeanz": calculated mean value for the gravity acceleration signals for 3-axial signals in the X, Y and Z directions. Expressed in standard gravity units 'g'.
-* "tgravityaccstdx", "tgravityaccstdy", "tgravityaccstdz": calculated std value for the gravity acceleration signals for 3-axial signals in the X, Y and Z directions. Expressed in standard gravity units 'g'.
-* "tbodyaccjerkmeanx", "tbodyaccjerkmeany", "tbodyaccjerkmeanz": calculated mean value of the body jerk signal for 3-axial signals in the X, Y and Z directions. Expressed in standard gravity units 'g'.
-* "tbodyaccjerkstdx", "tbodyaccjerkstdy", "tbodyaccjerkstdz": calculated std value of the body jerk signal for 3-axial signals in the X, Y and Z directions. Expressed in standard gravity units 'g'.
-* "tbodygyromeanx", "tbodygyromeany", "tbodygyromeanz", "fbodygyromeanx", "fbodygyromeany", "fbodygyromeanz": calculated mean value of the angular velocity vector measured by the gyroscope for each window sample for 3-axial signals in the X, Y and Z directions. The units are radians/second.
-* "tbodygyrostdx", "tbodygyrostdy", "tbodygyrostdz", "fbodygyrostdx", "fbodygyrostdy", "fbodygyrostdz": calculated std value of the angular velocity vector measured by the gyroscope for each window sample for 3-axial signals in the X, Y and Z directions. The units are radians/second.
-* "tbodygyrojerkmeanx", "tbodygyrojerkmeany", "tbodygyrojerkmeanz": calculated mean value of the jerk signal measured by the gyroscope for each window sample for 3-axial signals in the X, Y and Z directions. The units are radians/second. 
-* "tbodygyrojerkstdx", "tbodygyrojerkstdy", "tbodygyrojerkstdz": calculated std value of the jerk signal measured by the gyroscope for each window sample for 3-axial signals in the X, Y and Z directions. The units are radians/second.
-* "tbodyaccmagmean", "tbodyaccmagstd": calculated mean and std values for the magnitude of body acceleration. Expressed in standard gravity units 'g'.
-* "tgravityaccmagmean", "tgravityaccmagstd": calculated mean and std values for the magnitude of the gravity acceleration. Expressed in standard gravity units 'g'.
-* "tbodyaccjerkmagmean", "tbodyaccjerkmagstd": calculated mean and std values for the magnitude of body jerk signal. Expressed in standard gravity units 'g'.
-* "tbodygyromagmean", "tbodygyromagstd": calculated mean and std values of the magnitude of the angular velocity vector measured by the gyroscope. The units are radians/second.
-* "tbodygyrojerkmagmean", "tbodygyrojerkmagstd": calculated mean and std values of the magnitude of the jerk signal measured by the gyroscope. The units are radians/second.
-* "fbodyaccmeanfreqx", "fbodyaccmeanfreqy", "fbodyaccmeanfreqz": calculated mean frequency value of body acceleration signals for 3-axial signals in the X, Y and Z directions. Units are Hz.
-* "fbodyaccjerkmeanx", "fbodyaccjerkmeany", "fbodyaccjerkmeanz": calculated mean frequency value of body jerk signals for 3-axial signals in the X, Y and Z directions. Units are Hz.
-* "fbodyaccjerkstdx", "fbodyaccjerkstdy", "fbodyaccjerkstdz": calculated frequency std value of body jerk signals for 3-axial signals in the X, Y and Z directions. Units are Hz.
-* "fbodyaccjerkmeanfreqx", "fbodyaccjerkmeanfreqy", "fbodyaccjerkmeanfreqz": calculated mean frequency value of body acceleration and jerk signals for 3-axial signals in the X, Y and Z directions. Units are Hz.
-* "fbodygyromeanfreqx" "fbodygyromeanfreqy" "fbodygyromeanfreqz": calculated mean frequency value of the angular velocity vector measured by the gyroscope for 3-axial signals in the X, Y and Z directions. Units are Hz. 
-* "fbodyaccmagmean", "fbodyaccmagstd": calculated mean and std of body acceleration magnitude. 
-* "fbodyaccmagmeanfreq": calculated mean frequency of body acceleration magnitude.  Units are Hz.
-* "fbodybodyaccjerkmagmean" "fbodybodyaccjerkmagstd": calculated mean and std of body jerk magnitude. 
-* "fbodybodyaccjerkmagmeanfreq": calculated mean frequency of body jerk magnitude. Units are Hz. 
-* "fbodybodygyromagmean" "fbodybodygyromagstd": calculated mean and std of the angular velocity vector magnitude measured by the gyroscope. The units are radians/second.
-* "fbodybodygyromagmeanfreq": calculated mean frequency of the angular velocity vector magnitude. Units are Hz.
-* "fbodybodygyrojerkmagmean" "fbodybodygyrojerkmagstd": calculated mean and std of the jerk signal magnitude measured by the gyroscope. The units are radians/second.
-* "fbodybodygyrojerkmagmeanfreq": calculated mean frequency of the jerk signal magnitude measured by the gyroscope. Units are Hz.
-* "activityid": ID of the activity read from the file 'activity_labels.txt'. Numeric variable in range from 1 to 6.
-* "activitylabel": the label of the activity corresponding to the activity ID in the previous variable. This is a factor variable of six levels: WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING and LAYING.
+* **subject**: the subject who performed the activity for each window sample. Numeric variable in range from 1 to 30.
+* **tbodyaccmeanx**, **tbodyaccmeany**, **tbodyaccmeanz**, **fbodyaccmeanx**, **fbodyaccmeany**, **fbodyaccmeanz*: calculated mean value for the body acceleration signals for 3-axial signals in the X, Y and Z directions. Expressed in standard gravity units 'g'.
+* **tbodyaccstdx**, **tbodyaccstdy**, **tbodyaccstdz**, **fbodyaccstdx**, **fbodyaccstdy**, **fbodyaccstdz**: calculated std value for the body acceleration signals for 3-axial signals in the X, Y and Z directions. Expressed in standard gravity units 'g'.
+* **tgravityaccmeanx**, **tgravityaccmeany**, **tgravityaccmeanz**: calculated mean value for the gravity acceleration signals for 3-axial signals in the X, Y and Z directions. Expressed in standard gravity units 'g'.
+* **tgravityaccstdx**, **tgravityaccstdy**, **tgravityaccstdz**: calculated std value for the gravity acceleration signals for 3-axial signals in the X, Y and Z directions. Expressed in standard gravity units 'g'.
+* **tbodyaccjerkmeanx**, **tbodyaccjerkmeany**, **tbodyaccjerkmeanz**: calculated mean value of the body jerk signal for 3-axial signals in the X, Y and Z directions. Expressed in standard gravity units 'g'.
+* **tbodyaccjerkstdx**, **tbodyaccjerkstdy**, **tbodyaccjerkstdz**: calculated std value of the body jerk signal for 3-axial signals in the X, Y and Z directions. Expressed in standard gravity units 'g'.
+* **tbodygyromeanx**, **tbodygyromeany**, **tbodygyromeanz**, **fbodygyromeanx**, **fbodygyromeany**, **fbodygyromeanz**: calculated mean value of the angular velocity vector measured by the gyroscope for each window sample for 3-axial signals in the X, Y and Z directions. The units are radians/second.
+* **tbodygyrostdx**, **tbodygyrostdy**, **tbodygyrostdz**, **fbodygyrostdx**, **fbodygyrostdy**, **fbodygyrostdz**: calculated std value of the angular velocity vector measured by the gyroscope for each window sample for 3-axial signals in the X, Y and Z directions. The units are radians/second.
+* **tbodygyrojerkmeanx**, **tbodygyrojerkmeany**, **tbodygyrojerkmeanz**: calculated mean value of the jerk signal measured by the gyroscope for each window sample for 3-axial signals in the X, Y and Z directions. The units are radians/second. 
+* **tbodygyrojerkstdx**, **tbodygyrojerkstdy**, **tbodygyrojerkstdz**: calculated std value of the jerk signal measured by the gyroscope for each window sample for 3-axial signals in the X, Y and Z directions. The units are radians/second.
+* **tbodyaccmagmean**, **tbodyaccmagstd**: calculated mean and std values for the magnitude of body acceleration. Expressed in standard gravity units 'g'.
+* **tgravityaccmagmean**, **tgravityaccmagstd**: calculated mean and std values for the magnitude of the gravity acceleration. Expressed in standard gravity units 'g'.
+* **tbodyaccjerkmagmean**, **tbodyaccjerkmagstd**: calculated mean and std values for the magnitude of body jerk signal. Expressed in standard gravity units 'g'.
+* **tbodygyromagmean**, **tbodygyromagstd**: calculated mean and std values of the magnitude of the angular velocity vector measured by the gyroscope. The units are radians/second.
+* **tbodygyrojerkmagmean**, **tbodygyrojerkmagstd**: calculated mean and std values of the magnitude of the jerk signal measured by the gyroscope. The units are radians/second.
+* **fbodyaccmeanfreqx**, **fbodyaccmeanfreqy**, **fbodyaccmeanfreqzz**: calculated mean frequency value of body acceleration signals for 3-axial signals in the X, Y and Z directions. Units are Hz.
+* **fbodyaccjerkmeanx**, **fbodyaccjerkmeany**, **fbodyaccjerkmeanz**: calculated mean frequency value of body jerk signals for 3-axial signals in the X, Y and Z directions. Units are Hz.
+* **fbodyaccjerkstdx**, **fbodyaccjerkstdy**, **fbodyaccjerkstdz**: calculated frequency std value of body jerk signals for 3-axial signals in the X, Y and Z directions. Units are Hz.
+* **fbodyaccjerkmeanfreqx**, **fbodyaccjerkmeanfreqy**, **fbodyaccjerkmeanfreqz**: calculated mean frequency value of body acceleration and jerk signals for 3-axial signals in the X, Y and Z directions. Units are Hz.
+* **fbodygyromeanfreqx**, **fbodygyromeanfreqy**, **fbodygyromeanfreqz**: calculated mean frequency value of the angular velocity vector measured by the gyroscope for 3-axial signals in the X, Y and Z directions. Units are Hz. 
+* **fbodyaccmagmean**, **fbodyaccmagstd**: calculated mean and std of body acceleration magnitude. 
+* **fbodyaccmagmeanfreq**: calculated mean frequency of body acceleration magnitude.  Units are Hz.
+* **fbodybodyaccjerkmagmean**, **fbodybodyaccjerkmagstd**: calculated mean and std of body jerk magnitude. 
+* **fbodybodyaccjerkmagmeanfreq**: calculated mean frequency of body jerk magnitude. Units are Hz. 
+* **fbodybodygyromagmean**, **fbodybodygyromagstd**: calculated mean and std of the angular velocity vector magnitude measured by the gyroscope. The units are radians/second.
+* **fbodybodygyromagmeanfreq**: calculated mean frequency of the angular velocity vector magnitude. Units are Hz.
+* **fbodybodygyrojerkmagmean**, **fbodybodygyrojerkmagstd**: calculated mean and std of the jerk signal magnitude measured by the gyroscope. The units are radians/second.
+* **fbodybodygyrojerkmagmeanfreq**: calculated mean frequency of the jerk signal magnitude measured by the gyroscope. Units are Hz.
+* **activityid**: ID of the activity read from the file 'activity_labels.txt'. Numeric variable in range from 1 to 6.
+* **activitylabel**: the label of the activity corresponding to the activity ID in the previous variable. This is a factor variable of six levels: WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING and LAYING.
 
