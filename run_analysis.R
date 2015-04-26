@@ -56,4 +56,4 @@ names(dataFinal) <- tolower(names(dataFinal))
 tidy <- aggregate(dataFinal, by=list(activity = dataFinal$activityid, subject=dataFinal$subject), mean, na.rm = TRUE)
 tidy$activitylabel <- activityLabels[tidy$activityid,2]
 
-write.table(tidy, "tidy.txt", sep="\t")
+write.table(tidy, "./tidyData.txt", row.name = FALSE)
